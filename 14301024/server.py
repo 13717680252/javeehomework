@@ -107,7 +107,7 @@ class WSGIServer(object):
             self.client_connection.close()
 
 
-SERVER_ADDRESS = (HOST, PORT) = '', 3333
+SERVER_ADDRESS = (HOST, PORT) = '', 8888
 
 def make_server(server_address, app):
     server = WSGIServer(server_address)
