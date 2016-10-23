@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+
 public class HttpServer1 {
 	private static final String SHUTDOWN_COMMAND = "/SHUTDOWN";
 	// the shutdown command received
@@ -43,11 +44,15 @@ public class HttpServer1 {
 				MyResponse response = new MyResponse(output);
 						
 				if (request.getParameter("Uri")!=null){
-					if(request.getParameter("Uri").contains(".")) {
+					if(request.getParameter("Uri").contains(".html")) {
 					StaticResourceProcessor processor = new StaticResourceProcessor();
 					processor.process(request, response);
-				} else { ServletProcessor1 processor=new ServletProcessor1();
-                           processor.process(request,response);
+				} else { 
+					//run check at first
+					parsejsp rd=new parsejsp(request.getParameter("Uri").substring(1));
+					rd. generateservlet();
+					ServletProcessor1 processor=new ServletProcessor1();				           
+                    processor.process(request,response);
 					
 				}
 				}
